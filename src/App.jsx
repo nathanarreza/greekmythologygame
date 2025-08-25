@@ -389,21 +389,58 @@ function TeamPanel({ title, team, roster, onRemove }) {
 }
 
 function BenchPanel({ bench, onAdd }) {
+    const [query, setQuery] = useState("");
+
+    // Filter bench by name
+    const filteredBench = bench.filter((c) =>
+        c.name.toLowerCase().includes(query.toLowerCase())
+    );
+
     return (
         <div className="rounded-2xl bg-neutral-900 p-3">
             <h2 className="font-semibold">Bench</h2>
+
+            {/* Search bar */}
+            <input
+                type="text"
+                placeholder="Search..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                className="mt-2 w-full rounded-lg bg-neutral-800 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            />
+
             <div className="mt-2 grid sm:grid-cols-2 gap-2">
-                {bench.map((c) => (
+                {filteredBench.map((c) => (
                     <div key={c.id} className="rounded-xl bg-neutral-800 p-2">
                         <div className="font-medium">{c.name}</div>
-                        <div className="text-xs opacity-70">HP {c.stats.HP} · STR {c.stats.STR} · MAG {c.stats.MAG} · WIS {c.stats.WIS}</div>
-                        <div className="text-xs opacity-60 mt-1 line-clamp-2">{c.passive?.name}</div>
+                        <div className="text-xs opacity-70">
+                            HP {c.stats.HP} · STR {c.stats.STR} · MAG {c.stats.MAG} · WIS {c.stats.WIS}
+                        </div>
+                        <div className="text-xs opacity-60 mt-1 line-clamp-2">
+                            {c.passive?.name}
+                        </div>
                         <div className="mt-2 flex gap-2">
-                            <button onClick={() => onAdd(0, c)} className="px-2 py-1 rounded-lg bg-emerald-700 text-xs">Add to Team A</button>
-                            <button onClick={() => onAdd(1, c)} className="px-2 py-1 rounded-lg bg-rose-700 text-xs">Add to Team B</button>
+                            <button
+                                onClick={() => onAdd(0, c)}
+                                className="px-2 py-1 rounded-lg bg-emerald-700 text-xs"
+                            >
+                                Add to Team A
+                            </button>
+                            <button
+                                onClick={() => onAdd(1, c)}
+                                className="px-2 py-1 rounded-lg bg-rose-700 text-xs"
+                            >
+                                Add to Team B
+                            </button>
                         </div>
                     </div>
                 ))}
+
+                {filteredBench.length === 0 && (
+                    <div className="col-span-full text-sm text-center opacity-60">
+                        No results found
+                    </div>
+                )}
             </div>
         </div>
     );

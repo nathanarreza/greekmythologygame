@@ -2125,44 +2125,6 @@
         },
         "passive": {
             "name": "Royal Defiance",
-            "text": "When Agamemnon is attacked, the attacker suffers 2 damage automatically. Gains +3 defense during the first round of battle. Immune to intimidation-based effects."
-        },
-        "abilities": [
-            {
-                "id": "AGAMEMNON_AB1",
-                "name": "Crushing Verdict",
-                "power": 10,
-                "type": "physical",
-                "text": "Effect: Target loses 2 defense for the next 2 turns."
-            },
-            {
-                "id": "AGAMEMNON_AB2",
-                "name": "Battle Retaliation",
-                "power": 7,
-                "type": "physical",
-                "text": "Effect: Instantly counters with a blow that deals 7 damage. May only be used once per round."
-            },
-            {
-                "id": "AGAMEMNON_AB3",
-                "name": "King’s Wrath",
-                "power": 18,
-                "type": "physical",
-                "text": "Effect: Deals 18 damage to an enemy who has attacked Agamemnon this round. If not applicable, damage is reduced to 10."
-            }
-        ]
-    },
-    {
-        "id": "AGAMEMNON",
-        "name": "Agamemnon",
-        "canFly": false,
-        "stats": {
-            "HP": 135,
-            "STR": 17,
-            "MAG": 5,
-            "WIS": 14
-        },
-        "passive": {
-            "name": "Royal Defiance",
             "text": "When Agamemnon, or any of his allies are attacked, 25% of the damage is reflected back towards the attacker Funny Serious Leader Comedian, gives a joke every round and boosts allies with a +1 atk) Also, if the ally is dead, he or she will laugh in the underworld and be motivated by Agamemnon’s beautiful joke/speech. Immune to intimidation-based effects."
         },
         "abilities": [
