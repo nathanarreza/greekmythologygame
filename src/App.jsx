@@ -17,10 +17,7 @@ const MAG = "magical";
 //  - regen, blind, taunt, weaken, bind/root, flight, antiHeal, reviveLock,
 //  - forget (ability lock), rerollLow (disadvantage), rerollHigh (advantage)
 
-// Effect helpers
-function makeEffect({ key, power = 0, duration = 1, note = "", boosted }) {
-    return { key, power, duration, note, boosted: boosted || ((x) => ({ ...x, duration: x.duration + 1, power: x.power + 5 })) };
-}
+
 
 // Library: a SMALL starter set taken from the doc so you can test.
 // You can add ALL remaining characters by pasting them into the
@@ -269,7 +266,7 @@ export default function App() {
         }
 
         // EFFECT ROLL (50/50 success on d20; 20 = boosted)
-        if (ability.effects && ability.effects.length) {
+        if (ability.effects && ability.effects.duration) {
             const effRoll = d20();
             if (effRoll <= 10) {
                 logs.push(`Effect check d20(${effRoll}) — fails.`);
@@ -478,8 +475,9 @@ function Board({ state, setState, toggleHazard, performAttack, endTurnNoAction }
                     <div className="font-semibold mb-2">{current.name}’s turn</div>
                     <div className="text-xs opacity-70 mb-2">Statuses: {(current.statuses || []).map((s) => `${s.key}(${s.duration})`).join(", ") || "—"}</div>
                     <div className="grid gap-2">
+
                         {current.abilities.map((ab) => (
-                            <AbilityRow key={ab.id} ab={ab} attacker={current} enemies={enemies} onCast={(tgt) => performAttack(current, ab, tgt)} />
+                            <AbilityRow key={ab.id} ab={ab} attacker={current} allies={allies} enemies={enemies} onCast={(tgt) => performAttack(current, ab, tgt)} />
                         ))}
                     </div>
                 </div>
@@ -508,7 +506,7 @@ function Side({ title, list, currentId }) {
     );
 }
 
-function AbilityRow({ ab, attacker, enemies, onCast }) {
+function AbilityRow({ ab, attacker, allies, enemies, onCast }) {
     const [targetId, setTargetId] = useState(enemies[0]?.id || "");
     return (
         <div className="rounded-lg bg-neutral-900 p-2">

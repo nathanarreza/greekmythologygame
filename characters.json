@@ -19,7 +19,8 @@
                 "name": "Soul Bind",
                 "power": 10,
                 "type": "physical",
-                "text": "Threads fray, lives unravel. None escape the hand that waits at the end.\"\n Entangles opponents with deathly chains. Effect: Stuns enemy for 1 turn."
+                "text": "Threads fray, lives unravel. None escape the hand that waits at the end.\"\n Entangles opponents with deathly chains. Effect: Stuns enemy for 1 turn.",
+                "effects": {"key": "stun", "duration": 1, "note": "Titanstorm" }
             },
             {
                 "id": "THANATOS_-_THE_SILENT_END_AB2",
