@@ -322,7 +322,7 @@ export default function App() {
         <div className="min-h-screen bg-neutral-950 text-neutral-100 p-4">
             <div className="max-w-7xl mx-auto grid gap-4">
                 <header className="flex items-center justify-between">
-                    <h1 className="text-2xl font-bold">Clash of the Gods — 4v4 (Alpha)</h1>
+                    <h1 className="text-2xl font-bold">Clash of the Gods</h1>
                     <div className="flex gap-2">
                         <button onClick={() => setImportOpen(!importOpen)} className="px-3 py-1 rounded-xl bg-neutral-800 hover:bg-neutral-700">Add/Import Characters</button>
                         <button onClick={resetMatch} className="px-3 py-1 rounded-xl bg-neutral-800 hover:bg-neutral-700">Reset</button>
