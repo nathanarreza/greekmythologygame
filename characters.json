@@ -2455,7 +2455,7 @@
             }
         ]
     },
-    f{
+    {
         "id": "POSEIDON",
         "name": "Poseidon",
         "canFly": true,
