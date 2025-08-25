@@ -346,8 +346,9 @@ export default function App() {
                 {state.phase === "draft" && (
                     <section className="grid md:grid-cols-3 gap-4">
                         <TeamPanel title="Team A" team={0} roster={state.teams[0]} onRemove={removeFromTeam} />
-                        <BenchPanel bench={bench} onAdd={addToTeam} />
+
                         <TeamPanel title="Team B" team={1} roster={state.teams[1]} onRemove={removeFromTeam} />
+                        <BenchPanel bench={bench} onAdd={addToTeam} />
                     </section>
                 )}
 
