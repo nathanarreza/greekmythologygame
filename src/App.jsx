@@ -227,17 +227,11 @@ export default function App() {
         let base = computeBaseDamage(ability, attacker);
 
         // Ares Battle Frenzy example (simple): thresholds at <120/<75/<1
-        if (attacker.id === "ARES") {
-            const hp = attacker.stats.HP;
-            if (hp < 1) base += 10; else if (hp < 75) base += 5; else if (hp < 120) base += 2;
-        }
+
 
         let total = outcome === "miss" ? 0 : base + extra;
 
         // Artemis passive: never miss vs conditioned targets
-        if (attacker.id === "ARTEMIS" && outcome === "miss" && (target.statuses || []).length) {
-            outcome = "slight"; total = base + 20; // treat as slight
-        }
 
         // Apply damage
         const dealt = applyDamage(target, total, { true: trueFlag });
@@ -508,6 +502,17 @@ function Side({ title, list, currentId }) {
 
 function AbilityRow({ ab, attacker, allies, enemies, onCast }) {
     const [targetId, setTargetId] = useState(enemies[0]?.id || "");
+    let abilityTargets = (allies, enemies) => {
+        if (ab.effects === undefined){
+            return enemies
+        }
+        else if (ab.effects[0]?.key && ab.effects[0]?.key == "regen") {
+            return allies;
+        } else {
+            return enemies;
+        }
+    }
+
     return (
         <div className="rounded-lg bg-neutral-900 p-2">
             <div className="flex items-center justify-between">
@@ -517,7 +522,7 @@ function AbilityRow({ ab, attacker, allies, enemies, onCast }) {
                 </div>
                 <div className="flex items-center gap-2">
                     <select value={targetId} onChange={(e) => setTargetId(e.target.value)} className="bg-neutral-800 text-xs rounded px-2 py-1">
-                        {enemies.map((e) => (
+                        {abilityTargets(allies, enemies).map((e) => (
                             <option key={e.id} value={e.id}>{e.name}</option>
                         ))}
                     </select>

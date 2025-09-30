@@ -483,7 +483,8 @@
                 "name": "Lyric of Healing / Plague",
                 "power": 12,
                 "type": "physical",
-                "text": "Effect: Restore 18 HP to one ally OR 9 HP to all allies for 2 rounds (may stack)"
+                "text": "Effect: Restore 18 HP to one ally OR 9 HP to all allies for 2 rounds (may stack)  ",
+                "effects": [{"key": "regen", "duration": 1, "note": "Heal" }]
             },
             {
                 "id": "APOLLO_AB3",
